@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="buildingDataRes" load_steps=2 format=3 uid="uid://dobh5tq1kv3n7"]
+
+[ext_resource type="Script" uid="uid://b5ow5iw3ktd2w" path="res://scripts/resources/building_data.gd" id="1_hegfg"]
+
+[resource]
+resource_name = "buildingDataRes"
+script = ExtResource("1_hegfg")
+wood_cost = Array[int]([0, 70, 115, 195, 325, 545, 910, 1520, 2535, 4235, 7070])
+clay_cost = Array[int]([0, 90, 150, 250, 420, 700, 1170, 1950, 3260, 5445, 9095])
+iron_cost = Array[int]([0, 70, 115, 195, 325, 545, 910, 1520, 2535, 4235, 7070])
+wheat_cost = Array[int]([0, 20, 35, 55, 95, 155, 260, 435, 725, 1210, 2020])
+population = Array[int]([0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1])
+production = Array[int]([3, 7, 13, 21, 31, 46, 70, 98, 140, 203, 280])
+rounds = Array[int]([0, 1, 1, 2, 3, 5, 8, 13, 22, 35, 55])
+metadata/_custom_type_script = "uid://b5ow5iw3ktd2w"

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ditdn1qek6p51"]
+
+[ext_resource type="Script" uid="uid://cpwlmtavf06tq" path="res://scripts/simulation.gd" id="1_bmtiu"]
+
+[node name="SimulationSingleton" type="Node"]
+script = ExtResource("1_bmtiu")

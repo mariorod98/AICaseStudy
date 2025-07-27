@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://clqsnrhs8pano"]
+
+[ext_resource type="Script" uid="uid://c646tro84rxsh" path="res://scripts/village/village.gd" id="1_q5e70"]
+
+[node name="Village" type="Node"]
+script = ExtResource("1_q5e70")
