@@ -1,0 +1,221 @@
+[gd_scene load_steps=7 format=3 uid="uid://7bl4jwr5qhkk"]
+
+[ext_resource type="Texture2D" uid="uid://cnsawjs4iai6v" path="res://resources/images/population.png" id="1_goe4a"]
+[ext_resource type="Script" uid="uid://bbqme0g0k3hga" path="res://scripts/ui/village_ui.gd" id="1_q8hio"]
+[ext_resource type="Texture2D" uid="uid://c5wapuwo5jybt" path="res://resources/images/wood.png" id="2_1tqw0"]
+[ext_resource type="Texture2D" uid="uid://cq5db0k1yk6rw" path="res://resources/images/clay.png" id="3_0q0ql"]
+[ext_resource type="Texture2D" uid="uid://ho82uecv1jpp" path="res://resources/images/iron.png" id="4_hssvx"]
+[ext_resource type="Texture2D" uid="uid://bwgo784jay0mg" path="res://resources/images/wheat.png" id="5_mrw5y"]
+
+[node name="VillageUI" type="Control" node_paths=PackedStringArray("_name_label", "_population_label", "_resource_labels", "_building_buttons")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q8hio")
+_name_label = NodePath("MarginContainer2/VBoxContainer2/VillageName")
+_population_label = NodePath("MarginContainer2/VBoxContainer2/HBoxContainer2/PopulationValue")
+_resource_labels = [NodePath("MarginContainer/ResourcesContainer/WoodLabel"), NodePath("MarginContainer/ResourcesContainer/ClayLabel"), NodePath("MarginContainer/ResourcesContainer/IronLabel"), NodePath("MarginContainer/ResourcesContainer/WheatLabel")]
+_building_buttons = [NodePath("VBoxContainer/HBoxContainer/ResourceButton"), NodePath("VBoxContainer/HBoxContainer/ResourceButton2"), NodePath("VBoxContainer/HBoxContainer/ResourceButton3"), NodePath("VBoxContainer/HBoxContainer2/ResourceButton4"), NodePath("VBoxContainer/HBoxContainer2/ResourceButton5"), NodePath("VBoxContainer/HBoxContainer2/ResourceButton6"), NodePath("VBoxContainer/HBoxContainer2/ResourceButton7"), NodePath("VBoxContainer/HBoxContainer4/ResourceButton8"), NodePath("VBoxContainer/HBoxContainer4/ResourceButton9"), NodePath("VBoxContainer/HBoxContainer4/ResourceButton10"), NodePath("VBoxContainer/HBoxContainer4/ResourceButton11"), NodePath("VBoxContainer/HBoxContainer5/ResourceButton12"), NodePath("VBoxContainer/HBoxContainer5/ResourceButton13"), NodePath("VBoxContainer/HBoxContainer5/ResourceButton14"), NodePath("VBoxContainer/HBoxContainer5/ResourceButton15"), NodePath("VBoxContainer/HBoxContainer6/ResourceButton16"), NodePath("VBoxContainer/HBoxContainer6/ResourceButton17"), NodePath("VBoxContainer/HBoxContainer6/ResourceButton18")]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 118.0
+offset_bottom = 144.0
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ResourcesContainer" type="GridContainer" parent="MarginContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="WoodIcon" type="TextureRect" parent="MarginContainer/ResourcesContainer"]
+layout_mode = 2
+texture = ExtResource("2_1tqw0")
+expand_mode = 2
+
+[node name="WoodLabel" type="Label" parent="MarginContainer/ResourcesContainer"]
+layout_mode = 2
+text = "Wood"
+
+[node name="ClayIcon" type="TextureRect" parent="MarginContainer/ResourcesContainer"]
+layout_mode = 2
+texture = ExtResource("3_0q0ql")
+expand_mode = 2
+
+[node name="ClayLabel" type="Label" parent="MarginContainer/ResourcesContainer"]
+layout_mode = 2
+text = "Clay"
+
+[node name="IronIcon" type="TextureRect" parent="MarginContainer/ResourcesContainer"]
+layout_mode = 2
+texture = ExtResource("4_hssvx")
+expand_mode = 2
+
+[node name="IronLabel" type="Label" parent="MarginContainer/ResourcesContainer"]
+layout_mode = 2
+text = "Iron"
+
+[node name="WheatIcon" type="TextureRect" parent="MarginContainer/ResourcesContainer"]
+layout_mode = 2
+texture = ExtResource("5_mrw5y")
+expand_mode = 2
+
+[node name="WheatLabel" type="Label" parent="MarginContainer/ResourcesContainer"]
+layout_mode = 2
+text = "Wheat"
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -93.0
+offset_right = 93.0
+offset_bottom = 104.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="VillageName" type="Label" parent="MarginContainer2/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "VillageName"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer2/VBoxContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="PopulationIcon" type="TextureRect" parent="MarginContainer2/VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("1_goe4a")
+expand_mode = 2
+
+[node name="PopulationValue" type="Label" parent="MarginContainer2/VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+text = "Population"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -230.0
+offset_top = -103.0
+offset_right = 230.0
+offset_bottom = 103.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="ResourceButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "WheatFarm 0"
+
+[node name="ResourceButton2" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "WheatFarm 0"
+
+[node name="ResourceButton3" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "WheatFarm 0"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="ResourceButton4" type="Button" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "WheatFarm 0"
+
+[node name="ResourceButton5" type="Button" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "WheatFarm 0"
+
+[node name="ResourceButton6" type="Button" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "WheatFarm 0"
+
+[node name="ResourceButton7" type="Button" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "WheatFarm 0"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="ResourceButton8" type="Button" parent="VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "WheatFarm 0"
+
+[node name="ResourceButton9" type="Button" parent="VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "WheatFarm 0"
+
+[node name="ResourceButton10" type="Button" parent="VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "WheatFarm 0"
+
+[node name="ResourceButton11" type="Button" parent="VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "WheatFarm 0"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="ResourceButton12" type="Button" parent="VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+text = "WheatFarm 0"
+
+[node name="ResourceButton13" type="Button" parent="VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+text = "WheatFarm 0"
+
+[node name="ResourceButton14" type="Button" parent="VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+text = "WheatFarm 0"
+
+[node name="ResourceButton15" type="Button" parent="VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+text = "WheatFarm 0"
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="ResourceButton16" type="Button" parent="VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+text = "WheatFarm 0"
+
+[node name="ResourceButton17" type="Button" parent="VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+text = "WheatFarm 0"
+
+[node name="ResourceButton18" type="Button" parent="VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+text = "WheatFarm 0"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/ResourceButton" to="." method="_on_resource_button_pressed" binds= [0]]

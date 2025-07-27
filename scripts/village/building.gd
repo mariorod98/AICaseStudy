@@ -8,6 +8,7 @@ const MAX_LEVEL := 10
 @export var _data : buildingDataRes = null
 @export var _village : Village = null
 
+var _turns_left := 0
 
 func _init(buildingName : String, village : Village) -> void:
 	_name = buildingName
@@ -21,8 +22,8 @@ func update() -> void:
 			finish_upgrade()
 			print(_name + " upgraded to level " + str(_level))
 		else: 
-			var turns_left = _turns_to_complete /  _village.get_production_per_turn()
-			print(_name + " is upgrading, " + str(turns_left) + " turns left to complete")
+			_turns_left = _turns_to_complete /  _village.get_production_per_turn()
+			print(_name + " is upgrading, " + str(_turns_left) + " turns left to complete")
 
 
 # begins the upgrade of the building, it doesn't validate 
@@ -39,14 +40,22 @@ func finish_upgrade() -> void:
 	_level += 1
 	_is_upgrading = false
 
+
+func get_production() -> int:
+	return 0
+
+
 func get_current_turn_cost() -> float:
 	return get_turn_cost(_level + 1)
 
+
 func get_turn_cost(level : int) -> float:
-	return _data.turns[level]
+	return _data.turns[level] #TODO: apply modifier here
+
 
 func get_current_upgrade_cost() -> Array[int] :
 	return get_upgrade_cost(_level + 1)
+
 
 func get_upgrade_cost(level : int) -> Array[int] :
 	return [_data.wood_cost[level], _data.clay_cost[level], _data.iron_cost[level], _data.wheat_cost[level]]

@@ -1,0 +1,171 @@
+[gd_scene load_steps=8 format=3 uid="uid://bkjm615ahol3x"]
+
+[ext_resource type="Texture2D" uid="uid://c5wapuwo5jybt" path="res://resources/images/wood.png" id="1_e0v04"]
+[ext_resource type="Script" uid="uid://bohe5004hc8y2" path="res://scripts/ui/building_ui.gd" id="1_em0j0"]
+[ext_resource type="Texture2D" uid="uid://cq5db0k1yk6rw" path="res://resources/images/clay.png" id="2_e56ua"]
+[ext_resource type="Texture2D" uid="uid://ho82uecv1jpp" path="res://resources/images/iron.png" id="3_scye1"]
+[ext_resource type="Texture2D" uid="uid://bwgo784jay0mg" path="res://resources/images/wheat.png" id="4_em0j0"]
+[ext_resource type="Texture2D" uid="uid://cnsawjs4iai6v" path="res://resources/images/population.png" id="5_e56ua"]
+[ext_resource type="Texture2D" uid="uid://dk70sp0jfvw7n" path="res://resources/images/time.png" id="6_scye1"]
+
+[node name="BuildingUI" type="Control" node_paths=PackedStringArray("_name_label", "_level_label", "_wood_label", "_clay_label", "_iron_label", "_wheat_label", "_population_label", "_time_label", "_time_left_label", "_upgrade_button", "_close_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_em0j0")
+_name_label = NodePath("VBoxContainer/HBoxContainer3/NameLabel")
+_level_label = NodePath("VBoxContainer/HBoxContainer3/LevelLabel")
+_wood_label = NodePath("VBoxContainer/HBoxContainer/HBoxContainer/WoodLabel")
+_clay_label = NodePath("VBoxContainer/HBoxContainer/HBoxContainer2/ClayLabel")
+_iron_label = NodePath("VBoxContainer/HBoxContainer/HBoxContainer3/IronLabel")
+_wheat_label = NodePath("VBoxContainer/HBoxContainer/HBoxContainer4/WheatLabel")
+_population_label = NodePath("VBoxContainer/HBoxContainer/HBoxContainer5/PopulationLabel")
+_time_label = NodePath("VBoxContainer/HBoxContainer/HBoxContainer6/TimeLabel")
+_time_left_label = NodePath("VBoxContainer/HBoxContainer2/UpgradingContainer/TimeLeftLabel")
+_upgrade_button = NodePath("VBoxContainer/HBoxContainer2/UpgradeButton")
+_close_button = NodePath("CloseButton")
+
+[node name="CloseButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -50.0
+offset_bottom = 31.0
+grow_horizontal = 0
+text = "Close"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -345.0
+offset_top = -29.0
+offset_right = 345.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="NameLabel" type="Label" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "RandomBuilding"
+horizontal_alignment = 1
+
+[node name="LevelLabel" type="Label" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "lvl 0"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="WoodIcon" type="TextureRect" parent="VBoxContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_e0v04")
+expand_mode = 2
+
+[node name="WoodLabel" type="Label" parent="VBoxContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Wood"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="ClayIcon" type="TextureRect" parent="VBoxContainer/HBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("2_e56ua")
+expand_mode = 2
+
+[node name="ClayLabel" type="Label" parent="VBoxContainer/HBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Clay"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="IronIcon" type="TextureRect" parent="VBoxContainer/HBoxContainer/HBoxContainer3"]
+layout_mode = 2
+texture = ExtResource("3_scye1")
+expand_mode = 2
+
+[node name="IronLabel" type="Label" parent="VBoxContainer/HBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Iron"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="WheatIcon" type="TextureRect" parent="VBoxContainer/HBoxContainer/HBoxContainer4"]
+layout_mode = 2
+texture = ExtResource("4_em0j0")
+expand_mode = 2
+
+[node name="WheatLabel" type="Label" parent="VBoxContainer/HBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "Wheat"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="PopulationIcon" type="TextureRect" parent="VBoxContainer/HBoxContainer/HBoxContainer5"]
+layout_mode = 2
+texture = ExtResource("5_e56ua")
+expand_mode = 2
+
+[node name="PopulationLabel" type="Label" parent="VBoxContainer/HBoxContainer/HBoxContainer5"]
+layout_mode = 2
+text = "Population"
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TimeIcon" type="TextureRect" parent="VBoxContainer/HBoxContainer/HBoxContainer6"]
+layout_mode = 2
+texture = ExtResource("6_scye1")
+expand_mode = 2
+
+[node name="TimeLabel" type="Label" parent="VBoxContainer/HBoxContainer/HBoxContainer6"]
+layout_mode = 2
+text = "Time"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="UpgradingContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="TimeIcon" type="TextureRect" parent="VBoxContainer/HBoxContainer2/UpgradingContainer"]
+layout_mode = 2
+texture = ExtResource("6_scye1")
+expand_mode = 2
+
+[node name="TimeLeftLabel" type="Label" parent="VBoxContainer/HBoxContainer2/UpgradingContainer"]
+layout_mode = 2
+text = "TimeLeft"
+
+[node name="UpgradeButton" type="Button" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Upgrade"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/UpgradeButton" to="." method="on_upgrade_button_pressed"]

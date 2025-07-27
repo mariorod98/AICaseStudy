@@ -32,7 +32,7 @@ const LAYOUT = [GlobalData.ResourceType.WOOD,	#0
 var _buildings : Array[Building] = []
 var _resource_buildings : Array[ResourceBuilding] = []
 var _resources : Dictionary[GlobalData.ResourceType, int] = {GlobalData.ResourceType.WOOD : 0, GlobalData.ResourceType.CLAY : 0, GlobalData.ResourceType.IRON : 0, GlobalData.ResourceType.WHEAT : 0} 
-var _resource_capacities = {GlobalData.ResourceType.WOOD : BASE_MAX_CAPACITY, GlobalData.ResourceType.CLAY : BASE_MAX_CAPACITY, GlobalData.ResourceType.IRON : BASE_MAX_CAPACITY, GlobalData.ResourceType.WHEAT : BASE_MAX_CAPACITY} 
+var _resource_capacities : Dictionary[GlobalData.ResourceType, int] = {GlobalData.ResourceType.WOOD : BASE_MAX_CAPACITY, GlobalData.ResourceType.CLAY : BASE_MAX_CAPACITY, GlobalData.ResourceType.IRON : BASE_MAX_CAPACITY, GlobalData.ResourceType.WHEAT : BASE_MAX_CAPACITY} 
 #endregion
 
 

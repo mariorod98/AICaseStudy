@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://bdmh85uxali8j"]
+
+[ext_resource type="Script" uid="uid://cejd41w28cco7" path="res://scripts/player/player_controller.gd" id="1_d4y06"]
+[ext_resource type="Script" uid="uid://cmrxm1fu40nsu" path="res://scripts/player/ui_controller.gd" id="2_6agyq"]
+[ext_resource type="PackedScene" uid="uid://dtmykc7o27v2j" path="res://scenes/UI/general_ui.tscn" id="3_uxksl"]
+[ext_resource type="PackedScene" uid="uid://7bl4jwr5qhkk" path="res://scenes/UI/village_ui.tscn" id="4_0c017"]
+[ext_resource type="PackedScene" uid="uid://bkjm615ahol3x" path="res://scenes/UI/building_ui.tscn" id="5_7va2w"]
+
+[node name="PlayerController" type="Node" node_paths=PackedStringArray("_ui_controller")]
+script = ExtResource("1_d4y06")
+_focused_village = -1
+_ui_controller = NodePath("UIController")
+
+[node name="UIController" type="Control" parent="." node_paths=PackedStringArray("_general_ui", "_village_ui", "_building_ui")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_6agyq")
+_general_ui = NodePath("GeneralUI")
+_village_ui = NodePath("VillageUI")
+_building_ui = NodePath("BuildingUI")
+metadata/_custom_type_script = "uid://cmrxm1fu40nsu"
+
+[node name="GeneralUI" parent="UIController" instance=ExtResource("3_uxksl")]
+layout_mode = 1
+offset_right = -1280.0
+offset_bottom = -720.0
+
+[node name="VillageUI" parent="UIController" instance=ExtResource("4_0c017")]
+layout_mode = 1
+
+[node name="BuildingUI" parent="UIController" instance=ExtResource("5_7va2w")]
+visible = false
+layout_mode = 1
