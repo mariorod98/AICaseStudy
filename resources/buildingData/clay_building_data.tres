@@ -11,5 +11,5 @@ iron_cost = Array[int]([0, 50, 85, 140, 235, 390, 650, 1085, 1810, 3025, 5050])
 wheat_cost = Array[int]([0, 60, 100, 165, 280, 465, 780, 1300, 2175, 3630, 6060])
 population = Array[int]([0, 2, 1, 1, 1, 1, 2, 2, 2, 2, 2])
 production = Array[int]([3, 7, 13, 21, 31, 46, 70, 98, 140, 203, 280])
-rounds = Array[int]([0, 1, 1, 2, 4, 6, 10, 15, 25, 40, 63])
+turns = Array[int]([0, 1, 1, 2, 4, 6, 10, 15, 25, 40, 63])
 metadata/_custom_type_script = "uid://b5ow5iw3ktd2w"

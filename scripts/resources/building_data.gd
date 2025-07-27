@@ -6,4 +6,4 @@ class_name buildingDataRes extends Resource
 @export var wheat_cost : Array[int] = []
 @export var population : Array[int] = []
 @export var production : Array[int] = []
-@export var rounds : Array[int] = []
+@export var turns : Array[int] = []
