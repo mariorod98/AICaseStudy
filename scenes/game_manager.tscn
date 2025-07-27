@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cofo5mcjqw7pw"]
+
+[ext_resource type="Script" uid="uid://qx30dmnuo7y5" path="res://scripts/game_manager.gd" id="1_glms7"]
+[ext_resource type="Script" uid="uid://cpwlmtavf06tq" path="res://scripts/simulation.gd" id="2_udu3i"]
+
+[node name="GameManager" type="Node" node_paths=PackedStringArray("_players_root", "_villages_root", "_simulation")]
+script = ExtResource("1_glms7")
+_players_root = NodePath("Players")
+_villages_root = NodePath("Villages")
+_simulation = NodePath("Simulation")
+metadata/_custom_type_script = "uid://qx30dmnuo7y5"
+
+[node name="Players" type="Node" parent="."]
+
+[node name="Villages" type="Node" parent="."]
+
+[node name="Simulation" type="Node" parent="."]
+script = ExtResource("2_udu3i")
+metadata/_custom_type_script = "uid://cpwlmtavf06tq"

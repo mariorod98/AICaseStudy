@@ -13,9 +13,8 @@ func _init(buildingName : String, village : Village) -> void:
 	_name = buildingName
 	_village = village
 
-# this function is signaled by the simulation singleton if the building
-# is currently doing an upgrade
-func on_update() -> void:
+# updates the inner state of the building, mainly if it is being updated
+func update() -> void:
 	if _is_upgrading:
 		_turns_to_complete -= _village.get_production_per_turn()
 		if _turns_to_complete <= 0:
@@ -25,14 +24,11 @@ func on_update() -> void:
 			var turns_left = _turns_to_complete /  _village.get_production_per_turn()
 			print(_name + " is upgrading, " + str(turns_left) + " turns left to complete")
 
-func build() -> void:
-	Simulation.on_new_turn.connect(on_update)
-	upgrade()
-	
+
 # begins the upgrade of the building, it doesn't validate 
 # that we have enough resources in the village
 func upgrade() -> void:
-	_turns_to_complete = get_round_cost(_level + 1)
+	_turns_to_complete = get_turn_cost(_level + 1)
 	_is_upgrading = true
 	print("Upgrading" + _name + " to level " + str(_level + 1))
 
@@ -42,12 +38,15 @@ func finish_upgrade() -> void:
 	_turns_to_complete = 0
 	_level += 1
 	_is_upgrading = false
-	Simulation.on_new_turn.disconnect(on_update)
 
+func get_current_turn_cost() -> float:
+	return get_turn_cost(_level + 1)
 
-func get_round_cost(level : int) -> float:
-	return _data.rounds[level]
+func get_turn_cost(level : int) -> float:
+	return _data.turns[level]
 
+func get_current_upgrade_cost() -> Array[int] :
+	return get_upgrade_cost(_level + 1)
 
 func get_upgrade_cost(level : int) -> Array[int] :
 	return [_data.wood_cost[level], _data.clay_cost[level], _data.iron_cost[level], _data.wheat_cost[level]]

@@ -1,5 +1,6 @@
 class_name Village extends Node
 
+#region variables
 const BASE_PRODUCTION_PER_TURN = 60.0
 const BASE_MAX_CAPACITY = 1000
 
@@ -25,45 +26,81 @@ const LAYOUT = [GlobalData.ResourceType.WOOD,	#0
 				]
 
 # the first 18 buildings are always resource buildings
-@export var _buildings : Array[Building] = []
-@export var _resource_buildings : Array[ResourceBuilding] = []
-@export var _resources = {GlobalData.ResourceType.WOOD : 0, GlobalData.ResourceType.CLAY : 0, GlobalData.ResourceType.IRON : 0, GlobalData.ResourceType.WHEAT : 0} 
+@export var _name := ""
+@export var _owner : PlayerController = null
 
-# NOTE: probably not necessary at all if the capacity is always the same for all resources
-var _resource_capacities = {GlobalData.ResourceType.WOOD : BASE_MAX_CAPACITY, GlobalData.ResourceType.CLAY : 0, GlobalData.ResourceType.IRON : BASE_MAX_CAPACITY, GlobalData.ResourceType.WHEAT : BASE_MAX_CAPACITY} 
+var _buildings : Array[Building] = []
+var _resource_buildings : Array[ResourceBuilding] = []
+var _resources : Dictionary[GlobalData.ResourceType, int] = {GlobalData.ResourceType.WOOD : 0, GlobalData.ResourceType.CLAY : 0, GlobalData.ResourceType.IRON : 0, GlobalData.ResourceType.WHEAT : 0} 
+var _resource_capacities = {GlobalData.ResourceType.WOOD : BASE_MAX_CAPACITY, GlobalData.ResourceType.CLAY : BASE_MAX_CAPACITY, GlobalData.ResourceType.IRON : BASE_MAX_CAPACITY, GlobalData.ResourceType.WHEAT : BASE_MAX_CAPACITY} 
+#endregion
+
 
 # TODO: Load info from savegame
-func _init() -> void:
+func _init(player_owner : PlayerController) -> void:
+	_owner = player_owner
+	_name = "Village of " + _owner._name
+	name = _name
+	
+	_owner.on_new_turn.connect(update)
+	
 	for resource in LAYOUT:
 		var building = ResourceBuilding.new(resource, self)
 		add_child(building)
 		_buildings.append(building)
 		_resource_buildings.append(building)
-		
-	Simulation.on_new_turn.connect(update)
+	
+	#TODO add first building on construction
+
 
 # return the production that a village generates per turn
-# TODO it might have modifiers, to see
 func get_production_per_turn() -> float:
-	return BASE_PRODUCTION_PER_TURN # * modifiers if any
+	return BASE_PRODUCTION_PER_TURN # TODO * modifiers if any
+
 
 func upgrade_building(building_idx : int) -> bool:
 	var building = _buildings[building_idx]
 	if building.can_upgrade(_resources):
-		if building._level == 0:
-			building.build()
-		else:
-			building.upgrade()
+		remove_resources(building.get_current_upgrade_cost())
+		building.upgrade()
 		return true
 	else:
 		print("Can't upgrade " + building._name)
 		return false
 
-# generates the resources of the village, called at the end of each turn
-func update() :
-	for resource in _resource_buildings:
-		var amount_to_add = resource.get_resource_amount()
-		var type = resource._type
-		var new_amount = _resources[type] + amount_to_add
-		_resources[type] = new_amount >_resource_capacities[type] if _resource_capacities[type] else new_amount
-		print("Gathered " + str(amount_to_add) + " resources from " + resource._name)
+
+# updates all buildings, called at the start of the player turn
+func update() -> void:
+	for building in _buildings:
+		building.update()
+
+
+func update_resource(resource : GlobalData.ResourceType, amount : int, use_multiplier : bool) -> void:
+	var is_addition = amount >= 0
+	var new_amount = _resources[resource] + amount #TODO: multiply by modifier
+	
+	if is_addition:
+		_resources[resource] = _resource_capacities[resource] if new_amount >_resource_capacities[resource] else new_amount
+	else:
+		_resources[resource] = 0 if new_amount < 0 else new_amount
+
+
+# update all resources at the same time
+func add_resources(amounts : Array[int]) -> void:
+	for resource in GlobalData.ResourceType:
+		update_resource(resource, amounts[resource], false)
+
+
+func remove_resources(amounts : Array[int]) -> void:
+	for resource in GlobalData.ResourceType:
+		update_resource(resource, amounts[resource] * -1, false)
+
+
+func compute_resources_per_turn() -> Array[int]:
+	var resource_per_turn = [0, 0, 0, 0]
+	for building in _resource_buildings:
+		resource_per_turn[building._resource] += building.get_production()
+	
+	# TODO: apply modifiers
+	
+	return resource_per_turn
